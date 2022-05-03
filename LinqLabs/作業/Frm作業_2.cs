@@ -22,6 +22,7 @@ namespace MyHomeWork
         private void button11_Click(object sender, EventArgs e)
         {
             var query = from q in this.awDataSet1.ProductPhoto select q;
+            lblMaster.Text += " 總共:" + query.Count();
             dataGridView1.DataSource = query.ToList();
         }
 
@@ -40,12 +41,14 @@ namespace MyHomeWork
         private void button3_Click(object sender, EventArgs e)
         {
             var query = from q in this.awDataSet1.ProductPhoto where q.ModifiedDate>=dateTimePicker1.Value && q.ModifiedDate<=dateTimePicker2.Value select q;
+            lblMaster.Text += " 總共:" + query.Count();
             dataGridView1.DataSource = query.ToList();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             var query = from q in this.awDataSet1.ProductPhoto where q.ModifiedDate.Year == (int)comboBox3.SelectedItem select q;
+            lblMaster.Text += " 總共:" + query.Count();
             dataGridView1.DataSource = query.ToList();
         }
 
@@ -66,7 +69,7 @@ namespace MyHomeWork
             {
                 query = query.Where(q => q.ModifiedDate.Month > min && q.ModifiedDate.Month < max);
             }
-
+            lblMaster.Text +=  " 總共:" + query.Count();
             dataGridView1.DataSource = query.ToList();
         }
     }
